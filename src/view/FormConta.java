@@ -287,7 +287,7 @@ public class FormConta extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 136, 510, 550));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 510, 530));
 
         Logo.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
         Logo.setForeground(new java.awt.Color(255, 255, 255));
@@ -317,7 +317,7 @@ public class FormConta extends javax.swing.JFrame {
         getContentPane().add(minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, -1));
 
         fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Ativo 4.png"))); // NOI18N
-        getContentPane().add(fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 130));
+        getContentPane().add(fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 120));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
