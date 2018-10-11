@@ -17,107 +17,42 @@ public class FormConta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabelFechar = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        Nome = new javax.swing.JLabel();
         jTextFieldName = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jTextFieldEmail = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        Email = new javax.swing.JLabel();
+        User = new javax.swing.JLabel();
         jTextFieldUser = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
+        Senha = new javax.swing.JLabel();
         jPasswordFieldSenha = new javax.swing.JPasswordField();
         jSeparator6 = new javax.swing.JSeparator();
         jPasswordFieldSenhaRetry = new javax.swing.JPasswordField();
         jSeparator7 = new javax.swing.JSeparator();
-        jLabel8 = new javax.swing.JLabel();
+        Retry_senha = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabelLogin1 = new javax.swing.JLabel();
+        Cadastrar = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabelLogin = new javax.swing.JLabel();
-        jLabelVoltar = new javax.swing.JLabel();
+        Cancel = new javax.swing.JLabel();
+        Voltar = new javax.swing.JLabel();
+        Logo = new javax.swing.JLabel();
+        Novo_cadastro2 = new javax.swing.JLabel();
+        fechar = new javax.swing.JLabel();
+        minimizar = new javax.swing.JLabel();
+        fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-
-        jPanel1.setBackground(new java.awt.Color(0, 77, 64));
-
-        jLabel6.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Sergeant_SGT_60px_1.png"))); // NOI18N
-        jLabel6.setText("sgva");
-
-        jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("cadastrar novo parceiro");
-
-        jLabel10.setFont(new java.awt.Font("Perpetua Titling MT", 1, 36)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("_");
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
-            }
-        });
-
-        jLabelFechar.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelFechar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
-        jLabelFechar.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelFechar.setText("X");
-        jLabelFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelFechar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelFecharMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelFechar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jLabel2)
-                .addContainerGap(108, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel3.setText("nome");
+        Nome.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        Nome.setForeground(new java.awt.Color(0, 77, 64));
+        Nome.setText("nome");
 
         jTextFieldName.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextFieldName.setForeground(new java.awt.Color(0, 77, 64));
@@ -153,13 +88,13 @@ public class FormConta extends javax.swing.JFrame {
 
         jSeparator4.setForeground(new java.awt.Color(0, 77, 64));
 
-        jLabel4.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel4.setText("e-mail");
+        Email.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        Email.setForeground(new java.awt.Color(0, 77, 64));
+        Email.setText("e-mail");
 
-        jLabel5.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel5.setText("usuário");
+        User.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        User.setForeground(new java.awt.Color(0, 77, 64));
+        User.setText("usuário");
 
         jTextFieldUser.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextFieldUser.setForeground(new java.awt.Color(0, 77, 64));
@@ -178,9 +113,9 @@ public class FormConta extends javax.swing.JFrame {
 
         jSeparator5.setForeground(new java.awt.Color(0, 77, 64));
 
-        jLabel7.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel7.setText("senha");
+        Senha.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        Senha.setForeground(new java.awt.Color(0, 77, 64));
+        Senha.setText("senha");
 
         jPasswordFieldSenha.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jPasswordFieldSenha.setForeground(new java.awt.Color(0, 77, 64));
@@ -216,15 +151,15 @@ public class FormConta extends javax.swing.JFrame {
 
         jSeparator7.setForeground(new java.awt.Color(0, 77, 64));
 
-        jLabel8.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel8.setText("repita senha");
+        Retry_senha.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        Retry_senha.setForeground(new java.awt.Color(0, 77, 64));
+        Retry_senha.setText("repita senha");
 
         jPanel5.setBackground(new java.awt.Color(51, 105, 30));
 
-        jLabelLogin1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jLabelLogin1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelLogin1.setText("cadastrar");
+        Cadastrar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        Cadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        Cadastrar.setText("cadastrar");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -232,22 +167,22 @@ public class FormConta extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelLogin1)
+                .addComponent(Cadastrar)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(jLabelLogin1)
+                .addComponent(Cadastrar)
                 .addContainerGap())
         );
 
         jPanel4.setBackground(new java.awt.Color(214, 0, 0));
 
-        jLabelLogin.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jLabelLogin.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelLogin.setText("CANCEL");
+        Cancel.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        Cancel.setForeground(new java.awt.Color(255, 255, 255));
+        Cancel.setText("CANCEL");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -255,23 +190,23 @@ public class FormConta extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabelLogin)
+                .addComponent(Cancel)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(jLabelLogin)
+                .addComponent(Cancel)
                 .addContainerGap())
         );
 
-        jLabelVoltar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
-        jLabelVoltar.setForeground(new java.awt.Color(0, 77, 64));
-        jLabelVoltar.setText("voltar tela login");
-        jLabelVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+        Voltar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
+        Voltar.setForeground(new java.awt.Color(0, 77, 64));
+        Voltar.setText("voltar tela login");
+        Voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelVoltarMouseClicked(evt);
+                VoltarMouseClicked(evt);
             }
         });
 
@@ -280,152 +215,171 @@ public class FormConta extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator3)
-                    .addComponent(jTextFieldName)
-                    .addComponent(jSeparator4)
-                    .addComponent(jTextFieldEmail)
-                    .addComponent(jSeparator5)
-                    .addComponent(jTextFieldUser)
-                    .addComponent(jSeparator6)
-                    .addComponent(jPasswordFieldSenha)
-                    .addComponent(jSeparator7)
-                    .addComponent(jPasswordFieldSenhaRetry)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelVoltar)
-                .addGap(121, 121, 121))
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Nome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldName)
+                                .addComponent(jSeparator3)
+                                .addComponent(Email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldEmail)
+                                .addComponent(jSeparator4)
+                                .addComponent(User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldUser)
+                                .addComponent(jSeparator5)
+                                .addComponent(Senha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPasswordFieldSenha)
+                                .addComponent(jSeparator6)
+                                .addComponent(Retry_senha, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                                .addComponent(jPasswordFieldSenhaRetry))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(Voltar)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel3)
+                .addGap(45, 45, 45)
+                .addComponent(Nome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(Email)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addComponent(User)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
+                .addComponent(Senha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
+                .addComponent(Retry_senha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordFieldSenhaRetry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jLabelVoltar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(Voltar)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 136, 510, 550));
+
+        Logo.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
+        Logo.setForeground(new java.awt.Color(255, 255, 255));
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Sergeant_SGT_60px_1.png"))); // NOI18N
+        Logo.setText("sgva");
+        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, -1, 40));
+
+        Novo_cadastro2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
+        Novo_cadastro2.setForeground(new java.awt.Color(255, 255, 255));
+        Novo_cadastro2.setText("cadastrar novo parceiro");
+        getContentPane().add(Novo_cadastro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, 18));
+
+        fechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Delete_16px_1.png"))); // NOI18N
+        fechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fecharMouseClicked(evt);
+            }
+        });
+        getContentPane().add(fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 20, -1));
+
+        minimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Subtract_16px_1.png"))); // NOI18N
+        minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                minimizarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, -1));
+
+        fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Ativo 4.png"))); // NOI18N
+        getContentPane().add(fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNameMouseClicked
-        jTextFieldName.setText("");
-    }//GEN-LAST:event_jTextFieldNameMouseClicked
-
-    private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
-        jTextFieldName.setText("");
-    }//GEN-LAST:event_jTextFieldNameActionPerformed
-
-    private void jTextFieldEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEmailMouseClicked
-        jTextFieldEmail.setText("");
-    }//GEN-LAST:event_jTextFieldEmailMouseClicked
-
-    private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
-        jTextFieldEmail.setText("");
-    }//GEN-LAST:event_jTextFieldEmailActionPerformed
-
-    private void jTextFieldUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldUserMouseClicked
-        jTextFieldUser.setText("");
-    }//GEN-LAST:event_jTextFieldUserMouseClicked
-
-    private void jTextFieldUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserActionPerformed
-        jTextFieldUser.setText("");
-    }//GEN-LAST:event_jTextFieldUserActionPerformed
-
-    private void jPasswordFieldSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaMouseClicked
-        jPasswordFieldSenha.setText("");
-    }//GEN-LAST:event_jPasswordFieldSenhaMouseClicked
-
-    private void jPasswordFieldSenhaRetryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaRetryMouseClicked
-        jPasswordFieldSenhaRetry.setText("");
-    }//GEN-LAST:event_jPasswordFieldSenhaRetryMouseClicked
-
-    private void jLabelVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVoltarMouseClicked
+    private void VoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VoltarMouseClicked
         Login telaLogin = new Login();
         telaLogin.setVisible(true);
         telaLogin.pack();
         telaLogin.setLocationRelativeTo(null);
         telaLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
-    }//GEN-LAST:event_jLabelVoltarMouseClicked
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void jLabelFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelFecharMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jLabelFecharMouseClicked
+    }//GEN-LAST:event_VoltarMouseClicked
 
     private void jPasswordFieldSenhaRetryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaRetryActionPerformed
         jPasswordFieldSenhaRetry.setText("");
     }//GEN-LAST:event_jPasswordFieldSenhaRetryActionPerformed
 
+    private void jPasswordFieldSenhaRetryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaRetryMouseClicked
+        jPasswordFieldSenhaRetry.setText("");
+    }//GEN-LAST:event_jPasswordFieldSenhaRetryMouseClicked
+
     private void jPasswordFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaActionPerformed
         jPasswordFieldSenha.setText("");
     }//GEN-LAST:event_jPasswordFieldSenhaActionPerformed
+
+    private void jPasswordFieldSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaMouseClicked
+        jPasswordFieldSenha.setText("");
+    }//GEN-LAST:event_jPasswordFieldSenhaMouseClicked
+
+    private void jTextFieldUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserActionPerformed
+        jTextFieldUser.setText("");
+    }//GEN-LAST:event_jTextFieldUserActionPerformed
+
+    private void jTextFieldUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldUserMouseClicked
+        jTextFieldUser.setText("");
+    }//GEN-LAST:event_jTextFieldUserMouseClicked
+
+    private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
+        jTextFieldEmail.setText("");
+    }//GEN-LAST:event_jTextFieldEmailActionPerformed
+
+    private void jTextFieldEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEmailMouseClicked
+        jTextFieldEmail.setText("");
+    }//GEN-LAST:event_jTextFieldEmailMouseClicked
+
+    private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
+        jTextFieldName.setText("");
+    }//GEN-LAST:event_jTextFieldNameActionPerformed
+
+    private void jTextFieldNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNameMouseClicked
+        jTextFieldName.setText("");
+    }//GEN-LAST:event_jTextFieldNameMouseClicked
+
+    private void fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseClicked
+        this.dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_fecharMouseClicked
+
+    private void minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizarMouseClicked
+        this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_minimizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -463,19 +417,18 @@ public class FormConta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabelFechar;
-    private javax.swing.JLabel jLabelLogin;
-    private javax.swing.JLabel jLabelLogin1;
-    private javax.swing.JLabel jLabelVoltar;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel Cadastrar;
+    private javax.swing.JLabel Cancel;
+    private javax.swing.JLabel Email;
+    private javax.swing.JLabel Logo;
+    private javax.swing.JLabel Nome;
+    private javax.swing.JLabel Novo_cadastro2;
+    private javax.swing.JLabel Retry_senha;
+    private javax.swing.JLabel Senha;
+    private javax.swing.JLabel User;
+    private javax.swing.JLabel Voltar;
+    private javax.swing.JLabel fechar;
+    private javax.swing.JLabel fundo;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -489,5 +442,6 @@ public class FormConta extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldUser;
+    private javax.swing.JLabel minimizar;
     // End of variables declaration//GEN-END:variables
 }
