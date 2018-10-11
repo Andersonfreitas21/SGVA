@@ -163,7 +163,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel5.setBackground(new java.awt.Color(51, 105, 30));
+        jPanel5.setBackground(new java.awt.Color(0, 77, 64));
         jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel5MouseClicked(evt);
