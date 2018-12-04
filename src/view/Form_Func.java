@@ -6,9 +6,9 @@ import javax.swing.JFrame;
  *
  * @author Programador-03
  */
-public class FormConta extends javax.swing.JFrame {
+public class Form_Func extends javax.swing.JFrame {
 
-    public FormConta() {
+    public Form_Func() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -73,7 +73,7 @@ public class FormConta extends javax.swing.JFrame {
 
         jTextFieldEmail.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextFieldEmail.setForeground(new java.awt.Color(0, 77, 64));
-        jTextFieldEmail.setText("Digite seu e-mail");
+        jTextFieldEmail.setText("Digite seu CPF");
         jTextFieldEmail.setBorder(null);
         jTextFieldEmail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -90,15 +90,15 @@ public class FormConta extends javax.swing.JFrame {
 
         Email.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         Email.setForeground(new java.awt.Color(0, 77, 64));
-        Email.setText("e-mail");
+        Email.setText("CPF");
 
         User.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         User.setForeground(new java.awt.Color(0, 77, 64));
-        User.setText("usuário");
+        User.setText("login");
 
         jTextFieldUser.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextFieldUser.setForeground(new java.awt.Color(0, 77, 64));
-        jTextFieldUser.setText("Digite um usuário");
+        jTextFieldUser.setText("Digite um usuário de login");
         jTextFieldUser.setBorder(null);
         jTextFieldUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -296,7 +296,7 @@ public class FormConta extends javax.swing.JFrame {
 
         Novo_cadastro2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
         Novo_cadastro2.setForeground(new java.awt.Color(255, 255, 255));
-        Novo_cadastro2.setText("cadastrar novo parceiro");
+        Novo_cadastro2.setText("cadastrar novo FUNCIONÁRIO");
         getContentPane().add(Novo_cadastro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, 18));
 
         fechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Delete_16px_1.png"))); // NOI18N
@@ -393,18 +393,18 @@ public class FormConta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_Func.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_Func.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_Func.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_Func.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormConta().setVisible(true);
+                new Form_Func().setVisible(true);
             }
         });
     }
