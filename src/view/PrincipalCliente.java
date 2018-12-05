@@ -32,58 +32,58 @@ public class PrincipalCliente extends javax.swing.JFrame {
         //fundo.setIcon(new ImageIcon(getClass().getResource("/image/Ativo 4.png")));
     }
     
-    public void limparCampos(){
-        jtfNomeProduto.setText("");
-        jtfValorProduto.setText("");
-        jtfCategoria.setText("");
-        jDateCad.setDate(null);
-        jtfEstoque.setText("");
-        jTextAreaDesc.setText("");
-    }
+//    public void limparCampos(){
+//        jtfNomeProduto.setText("");
+//        jtfValorProduto.setText("");
+//        jtfCategoria.setText("");
+//        jDateCad.setDate(null);
+//        jtfEstoque.setText("");
+//        jTextAreaDesc.setText("");
+//    }
 
-    private void Salvar() {
-        if (jtfNomeProduto.getText().isEmpty() || jtfNomeProduto.getText() == null && jtfValorProduto.getText().isEmpty() || jtfValorProduto.getText()==null) {
-            mensagem.setMensagem("ATENÇÃO", "Prencha todos os dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
-            mensagem.setVisible(true);
-        } else {
-            if (!conexao.obterConexao()) {
-                mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
-                mensagem.setVisible(true);
-                return;
-            }
-
-            try {
-                
-                preparedStatement = conexao.con.prepareStatement("INSERT INTO 'produto' "
-                        + "(nome_prod, valor_prod, descricao, estoque, categoria, data_cadas_prod) VALUES (?, ?, ?, ?, ?, ?)");
-                preparedStatement.setString(1, jtfNomeProduto.getText()); 
-                preparedStatement.setDouble(2, Double.parseDouble(jtfValorProduto.getText()));
-                preparedStatement.setString(3, jTextAreaDesc.getText());
-                preparedStatement.setString(4, jtfEstoque.getText());
-                preparedStatement.setString(5, jtfCategoria.getText());
-                
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String dataCad = simpleDateFormat.format(jDateCad.getDate());
-                
-                preparedStatement.setDate(6, utils.FormatarData(dataCad));//Data Nascimento
-                
-                int resposta = preparedStatement.executeUpdate();
-
-                if (resposta > 0) {
-                    limparCampos();
-                    mensagem.setMensagem("MENSAGEM", "Dados inseridos com sucesso!", "/Icones/icons8_Ok_32px.png", 1, 87, 155);
-                    mensagem.setVisible(true);
-                }
-
-                conexao.close();
-                preparedStatement.close();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
-            }
-        }
-
-    }
+//    private void Salvar() {
+//        if (jtfNomeProduto.getText().isEmpty() || jtfNomeProduto.getText() == null && jtfValorProduto.getText().isEmpty() || jtfValorProduto.getText()==null) {
+//            mensagem.setMensagem("ATENÇÃO", "Prencha todos os dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
+//            mensagem.setVisible(true);
+//        } else {
+//            if (!conexao.obterConexao()) {
+//                mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
+//                mensagem.setVisible(true);
+//                return;
+//            }
+//
+//            try {
+//                
+//                preparedStatement = conexao.con.prepareStatement("INSERT INTO 'produto' "
+//                        + "(nome_prod, valor_prod, descricao, estoque, categoria, data_cadas_prod) VALUES (?, ?, ?, ?, ?, ?)");
+//                preparedStatement.setString(1, jtfNomeProduto.getText()); 
+//                preparedStatement.setDouble(2, Double.parseDouble(jtfValorProduto.getText()));
+//                preparedStatement.setString(3, jTextAreaDesc.getText());
+//                preparedStatement.setString(4, jtfEstoque.getText());
+//                preparedStatement.setString(5, jtfCategoria.getText());
+//                
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//                String dataCad = simpleDateFormat.format(jDateCad.getDate());
+//                
+//                preparedStatement.setDate(6, utils.FormatarData(dataCad));//Data Nascimento
+//                
+//                int resposta = preparedStatement.executeUpdate();
+//
+//                if (resposta > 0) {
+//                    limparCampos();
+//                    mensagem.setMensagem("MENSAGEM", "Dados inseridos com sucesso!", "/Icones/icons8_Ok_32px.png", 1, 87, 155);
+//                    mensagem.setVisible(true);
+//                }
+//
+//                conexao.close();
+//                preparedStatement.close();
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
+//                e.printStackTrace();
+//            }
+//        }
+//
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -550,8 +550,7 @@ public class PrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeKeyTyped
 
     private void jLabelCidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCidadeMouseClicked
-        ViewAddCidadeJuridico view = new ViewAddCidadeJuridico(null, true, this);
-        view.setVisible(true);
+        
     }//GEN-LAST:event_jLabelCidadeMouseClicked
 
     private void txtEndKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEndKeyTyped
@@ -569,7 +568,7 @@ public class PrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBairroKeyTyped
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        Salvar();
+        //Salvar();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -585,7 +584,7 @@ public class PrincipalCliente extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 2) {
-            SelecionarCliente();
+            //SelecionarCliente();
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
