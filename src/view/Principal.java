@@ -80,7 +80,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jlDiaDataSemana, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jlHora, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 480, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -124,7 +124,7 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 761, Short.MAX_VALUE)
                 .addComponent(minimizar)
                 .addGap(14, 14, 14)
                 .addComponent(fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,6 +174,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 77, 64));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Defense_45px.png"))); // NOI18N
         jLabel3.setText("CLIENTES");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -218,6 +223,15 @@ public class Principal extends javax.swing.JFrame {
         view.dispose();
 
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        PrincipalCliente cadCliente = new PrincipalCliente();
+        cadCliente.setVisible(true);
+        cadCliente.pack();
+        cadCliente.setLocationRelativeTo(null);
+        cadCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        view.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     private void diaDataSemana() {
         Date d = new Date();
