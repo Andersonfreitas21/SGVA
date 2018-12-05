@@ -23,9 +23,9 @@ public class Conexao {
     public Connection con = null;
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/";
-    private static final String BANCO = "cad_alunos";
+    private static final String BANCO = "lojaarms";
     private static final String USER = "root";
-    private static final String PASS = "root";
+    private static final String PASS = "";
 
     public boolean obterConexao() {
         try {
@@ -83,5 +83,16 @@ public class Conexao {
             JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+//    public static void main(String[] args) {
+//        Conexao x = new Conexao();
+//        x.obterConexao();
+//        
+//        if (x.obterConexao()){
+//            System.out.println("OK");
+//        } else {
+//            System.out.println("Falha de conexão.");
+//        }
+//    }
     
 }

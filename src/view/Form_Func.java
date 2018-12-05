@@ -21,11 +21,11 @@ public class Form_Func extends javax.swing.JFrame {
         Nome = new javax.swing.JLabel();
         jTextFieldName = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jTextFieldEmail = new javax.swing.JTextField();
+        jTextFieldCpf = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         Email = new javax.swing.JLabel();
         User = new javax.swing.JLabel();
-        jTextFieldUser = new javax.swing.JTextField();
+        jTextFieldLogin = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         Senha = new javax.swing.JLabel();
         jPasswordFieldSenha = new javax.swing.JPasswordField();
@@ -50,9 +50,9 @@ public class Form_Func extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        Nome.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        Nome.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         Nome.setForeground(new java.awt.Color(0, 77, 64));
-        Nome.setText("nome");
+        Nome.setText("NOME");
 
         jTextFieldName.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextFieldName.setForeground(new java.awt.Color(0, 77, 64));
@@ -71,51 +71,51 @@ public class Form_Func extends javax.swing.JFrame {
 
         jSeparator3.setForeground(new java.awt.Color(0, 77, 64));
 
-        jTextFieldEmail.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextFieldEmail.setForeground(new java.awt.Color(0, 77, 64));
-        jTextFieldEmail.setText("Digite seu CPF");
-        jTextFieldEmail.setBorder(null);
-        jTextFieldEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTextFieldCpf.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextFieldCpf.setForeground(new java.awt.Color(0, 77, 64));
+        jTextFieldCpf.setText("Digite seu CPF");
+        jTextFieldCpf.setBorder(null);
+        jTextFieldCpf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldEmailMouseClicked(evt);
+                jTextFieldCpfMouseClicked(evt);
             }
         });
-        jTextFieldEmail.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEmailActionPerformed(evt);
+                jTextFieldCpfActionPerformed(evt);
             }
         });
 
         jSeparator4.setForeground(new java.awt.Color(0, 77, 64));
 
-        Email.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        Email.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         Email.setForeground(new java.awt.Color(0, 77, 64));
         Email.setText("CPF");
 
-        User.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        User.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         User.setForeground(new java.awt.Color(0, 77, 64));
-        User.setText("login");
+        User.setText("LOGIN");
 
-        jTextFieldUser.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextFieldUser.setForeground(new java.awt.Color(0, 77, 64));
-        jTextFieldUser.setText("Digite um usuário de login");
-        jTextFieldUser.setBorder(null);
-        jTextFieldUser.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTextFieldLogin.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTextFieldLogin.setForeground(new java.awt.Color(0, 77, 64));
+        jTextFieldLogin.setText("Digite um usuário de login");
+        jTextFieldLogin.setBorder(null);
+        jTextFieldLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldUserMouseClicked(evt);
+                jTextFieldLoginMouseClicked(evt);
             }
         });
-        jTextFieldUser.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUserActionPerformed(evt);
+                jTextFieldLoginActionPerformed(evt);
             }
         });
 
         jSeparator5.setForeground(new java.awt.Color(0, 77, 64));
 
-        Senha.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        Senha.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         Senha.setForeground(new java.awt.Color(0, 77, 64));
-        Senha.setText("senha");
+        Senha.setText("SENHA");
 
         jPasswordFieldSenha.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jPasswordFieldSenha.setForeground(new java.awt.Color(0, 77, 64));
@@ -151,9 +151,9 @@ public class Form_Func extends javax.swing.JFrame {
 
         jSeparator7.setForeground(new java.awt.Color(0, 77, 64));
 
-        Retry_senha.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        Retry_senha.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         Retry_senha.setForeground(new java.awt.Color(0, 77, 64));
-        Retry_senha.setText("repita senha");
+        Retry_senha.setText("REPITA A SENHA");
 
         jPanel5.setBackground(new java.awt.Color(51, 105, 30));
 
@@ -227,10 +227,10 @@ public class Form_Func extends javax.swing.JFrame {
                             .addComponent(jTextFieldName)
                             .addComponent(jSeparator3)
                             .addComponent(Email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldEmail)
+                            .addComponent(jTextFieldCpf)
                             .addComponent(jSeparator4)
                             .addComponent(User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldUser)
+                            .addComponent(jTextFieldLogin)
                             .addComponent(jSeparator5)
                             .addComponent(Senha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPasswordFieldSenha)
@@ -256,13 +256,13 @@ public class Form_Func extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Email)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(User)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -292,7 +292,7 @@ public class Form_Func extends javax.swing.JFrame {
         Logo.setForeground(new java.awt.Color(255, 255, 255));
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Sergeant_SGT_60px_1.png"))); // NOI18N
         Logo.setText("sgva");
-        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, 40));
+        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, 40));
 
         Novo_cadastro2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 10)); // NOI18N
         Novo_cadastro2.setForeground(new java.awt.Color(255, 255, 255));
@@ -346,21 +346,21 @@ public class Form_Func extends javax.swing.JFrame {
         jPasswordFieldSenha.setText("");
     }//GEN-LAST:event_jPasswordFieldSenhaMouseClicked
 
-    private void jTextFieldUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserActionPerformed
-        jTextFieldUser.setText("");
-    }//GEN-LAST:event_jTextFieldUserActionPerformed
+    private void jTextFieldLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLoginActionPerformed
+        jTextFieldLogin.setText("");
+    }//GEN-LAST:event_jTextFieldLoginActionPerformed
 
-    private void jTextFieldUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldUserMouseClicked
-        jTextFieldUser.setText("");
-    }//GEN-LAST:event_jTextFieldUserMouseClicked
+    private void jTextFieldLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldLoginMouseClicked
+        jTextFieldLogin.setText("");
+    }//GEN-LAST:event_jTextFieldLoginMouseClicked
 
-    private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
-        jTextFieldEmail.setText("");
-    }//GEN-LAST:event_jTextFieldEmailActionPerformed
+    private void jTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCpfActionPerformed
+        jTextFieldCpf.setText("");
+    }//GEN-LAST:event_jTextFieldCpfActionPerformed
 
-    private void jTextFieldEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEmailMouseClicked
-        jTextFieldEmail.setText("");
-    }//GEN-LAST:event_jTextFieldEmailMouseClicked
+    private void jTextFieldCpfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldCpfMouseClicked
+        jTextFieldCpf.setText("");
+    }//GEN-LAST:event_jTextFieldCpfMouseClicked
 
     private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
         jTextFieldName.setText("");
@@ -432,9 +432,9 @@ public class Form_Func extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextField jTextFieldEmail;
+    private javax.swing.JTextField jTextFieldCpf;
+    private javax.swing.JTextField jTextFieldLogin;
     private javax.swing.JTextField jTextFieldName;
-    private javax.swing.JTextField jTextFieldUser;
     private javax.swing.JLabel minimizar;
     // End of variables declaration//GEN-END:variables
 }

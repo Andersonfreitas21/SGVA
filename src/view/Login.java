@@ -1,7 +1,13 @@
-
 package view;
 
+import conexao.Conexao;
+import java.awt.Color;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
+import mensagens.ViewInfo;
 
 /**
  *
@@ -9,12 +15,105 @@ import javax.swing.JFrame;
  */
 public class Login extends javax.swing.JFrame {
 
+    private final Conexao conexao = new Conexao();
+    private ResultSet rs = null;
+    private PreparedStatement preparedStatement = null;
+    private String senha = "";
+    
+    private static final Login view = new Login();
+    private ViewInfo mensagem = new ViewInfo(null, true);
 
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
+    private void efetuarLogin() {
+        new SwingWorker<Void, Void>() {
+            int resposta = 0;
+            String nome;
+
+            @Override
+            protected Void doInBackground() {
+                if (!conexao.obterConexao()) {
+                    mensagem.setMensagem("ATENÇÃO", "Não foi possível conectar-se ao Banco de Dados!", "/Icones/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                    mensagem.setVisible(true);
+                } else {
+                    try {
+                        preparedStatement = conexao.con.prepareStatement("SELECT funcionario.login , funcionario.senha  FROM `funcionario` WHERE funcionario.login = ? AND funcionario.senha = ?");
+                        preparedStatement.setString(1, tfUsuario.getText());
+                        preparedStatement.setString(2, senha);
+                        rs = preparedStatement.executeQuery();
+
+                        if (rs.next() && rs != null) {
+                            resposta = 1;
+                            nome = rs.getString("funcionario.login");
+                            senha = rs.getString("funcionario.senha");
+
+                        } else {
+                            resposta = 0;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    if (resposta == 1) {
+                        conexao.close();
+                        preparedStatement.close();
+
+                        Principal viewPrincipal = new Principal();
+                        viewPrincipal.setVisible(true);
+                        viewPrincipal.pack();
+                        viewPrincipal.setLocationRelativeTo(null);
+                        viewPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        view.dispose();
+                        
+                    } else {
+                        conexao.close();
+                        preparedStatement.close();
+                        mensagem.setMensagem("ATENÇÃO", "Usuário e/ou Senha incorreto(s)!", "/Icones/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                        mensagem.setVisible(true);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        }.execute();
+    }
+
+    private void verificaLogin() {
+        senha = new String(tfSenha.getPassword());
+        
+        if (tfUsuario.getText().isEmpty() && senha.equals("")) {
+            jlMsgLogin.setText("*Campo obrigatório");
+            jlMsgLogin.setForeground(Color.red);
+            jsLogin.setForeground(Color.red);
+
+            jlMsgSenha.setText("*Campo obrigatório");
+            jlMsgSenha.setForeground(Color.red);
+            jsSenha.setForeground(Color.red);
+        } else if (tfUsuario.getText().isEmpty()) {
+            jlMsgLogin.setText("*Campo obrigatório");
+            jlMsgLogin.setForeground(Color.red);
+            jsLogin.setForeground(Color.red);
+        } else if (senha.equals("")) {
+            jlMsgSenha.setText("*Campo obrigatório");
+            jlMsgSenha.setForeground(Color.red);
+            jsSenha.setForeground(Color.red);
+        } else {
+            java.awt.EventQueue.invokeLater(() -> {
+                efetuarLogin();
+            });
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -30,13 +129,10 @@ public class Login extends javax.swing.JFrame {
         sgva = new javax.swing.JLabel();
         Login = new javax.swing.JLabel();
         Senha = new javax.swing.JLabel();
-        Email = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        jSeparator5 = new javax.swing.JSeparator();
-        jPasswordFieldSenha = new javax.swing.JPasswordField();
-        jTextFieldName = new javax.swing.JTextField();
-        jTextFieldEmail = new javax.swing.JTextField();
+        jsLogin = new javax.swing.JSeparator();
+        jsSenha = new javax.swing.JSeparator();
+        tfSenha = new javax.swing.JPasswordField();
+        tfUsuario = new javax.swing.JTextField();
         Logo = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         Cancel = new javax.swing.JLabel();
@@ -45,6 +141,8 @@ public class Login extends javax.swing.JFrame {
         conta_nova = new javax.swing.JLabel();
         fechar = new javax.swing.JLabel();
         minimizar = new javax.swing.JLabel();
+        jlMsgSenha = new javax.swing.JLabel();
+        jlMsgLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -75,53 +173,37 @@ public class Login extends javax.swing.JFrame {
         Senha.setForeground(new java.awt.Color(0, 77, 64));
         Senha.setText("senha");
 
-        Email.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        Email.setForeground(new java.awt.Color(0, 77, 64));
-        Email.setText("EMAIL");
+        jsLogin.setForeground(new java.awt.Color(0, 77, 64));
 
-        jSeparator3.setForeground(new java.awt.Color(0, 77, 64));
+        jsSenha.setForeground(new java.awt.Color(0, 77, 64));
 
-        jSeparator4.setForeground(new java.awt.Color(0, 77, 64));
-
-        jSeparator5.setForeground(new java.awt.Color(0, 77, 64));
-
-        jPasswordFieldSenha.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jPasswordFieldSenha.setForeground(new java.awt.Color(0, 77, 64));
-        jPasswordFieldSenha.setText("jPasswordField1");
-        jPasswordFieldSenha.setBorder(null);
-        jPasswordFieldSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+        tfSenha.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tfSenha.setForeground(new java.awt.Color(0, 77, 64));
+        tfSenha.setText("jPasswordField1");
+        tfSenha.setBorder(null);
+        tfSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPasswordFieldSenhaMouseClicked(evt);
+                tfSenhaMouseClicked(evt);
             }
         });
-        jPasswordFieldSenha.addActionListener(new java.awt.event.ActionListener() {
+        tfSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordFieldSenhaActionPerformed(evt);
+                tfSenhaActionPerformed(evt);
             }
         });
 
-        jTextFieldName.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextFieldName.setForeground(new java.awt.Color(0, 77, 64));
-        jTextFieldName.setText("Entre com seu login ");
-        jTextFieldName.setBorder(null);
-        jTextFieldName.addMouseListener(new java.awt.event.MouseAdapter() {
+        tfUsuario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tfUsuario.setForeground(new java.awt.Color(0, 77, 64));
+        tfUsuario.setText("Entre com seu login ");
+        tfUsuario.setBorder(null);
+        tfUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldNameMouseClicked(evt);
+                tfUsuarioMouseClicked(evt);
             }
         });
-        jTextFieldName.addActionListener(new java.awt.event.ActionListener() {
+        tfUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNameActionPerformed(evt);
-            }
-        });
-
-        jTextFieldEmail.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextFieldEmail.setForeground(new java.awt.Color(0, 77, 64));
-        jTextFieldEmail.setText("Entre com seu e-mail");
-        jTextFieldEmail.setBorder(null);
-        jTextFieldEmail.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldEmailMouseClicked(evt);
+                tfUsuarioActionPerformed(evt);
             }
         });
 
@@ -204,6 +286,10 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jlMsgSenha.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+
+        jlMsgLogin.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -230,15 +316,14 @@ public class Login extends javax.swing.JFrame {
                                     .addGap(88, 88, 88)
                                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Email, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Senha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jsLogin, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(Login, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(tfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                                    .addComponent(jsSenha)
+                                    .addComponent(tfSenha)
+                                    .addComponent(Senha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jlMsgLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jlMsgSenha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(minimizar, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(fechar)))
@@ -255,25 +340,26 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(sgva)
-                .addGap(46, 46, 46)
+                .addGap(85, 85, 85)
                 .addComponent(Login)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Senha)
+                .addComponent(jsLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(Senha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jsSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlMsgLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Email)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addComponent(jlMsgSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addComponent(conta_nova)
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,21 +387,17 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
-        jTextFieldName.setText("");
-    }//GEN-LAST:event_jTextFieldNameActionPerformed
+    private void tfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioActionPerformed
+        tfUsuario.setText("");
+    }//GEN-LAST:event_tfUsuarioActionPerformed
 
-    private void jTextFieldNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNameMouseClicked
-        jTextFieldName.setText("");
-    }//GEN-LAST:event_jTextFieldNameMouseClicked
+    private void tfUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfUsuarioMouseClicked
+        tfUsuario.setText("");
+    }//GEN-LAST:event_tfUsuarioMouseClicked
 
-    private void jPasswordFieldSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaMouseClicked
-        jPasswordFieldSenha.setText("");
-    }//GEN-LAST:event_jPasswordFieldSenhaMouseClicked
-
-    private void jTextFieldEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldEmailMouseClicked
-        jTextFieldEmail.setText("");
-    }//GEN-LAST:event_jTextFieldEmailMouseClicked
+    private void tfSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfSenhaMouseClicked
+        tfSenha.setText("");
+    }//GEN-LAST:event_tfSenhaMouseClicked
 
     private void conta_novaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_conta_novaMouseClicked
         Form_Func novaConta = new Form_Func();
@@ -327,18 +409,13 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_conta_novaMouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-        Principal viewPrincipal = new Principal();
-        viewPrincipal.setVisible(true);
-        viewPrincipal.pack();
-        viewPrincipal.setLocationRelativeTo(null);
-        viewPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        verificaLogin();
     }//GEN-LAST:event_jPanel5MouseClicked
 
-    private void jPasswordFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaActionPerformed
+    private void tfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSenhaActionPerformed
         // TODO add your handling code here:
-        jPasswordFieldSenha.setText("");
-    }//GEN-LAST:event_jPasswordFieldSenhaActionPerformed
+        tfSenha.setText("");
+    }//GEN-LAST:event_tfSenhaActionPerformed
 
     private void fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseClicked
         System.exit(0);
@@ -362,7 +439,6 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cancel;
-    private javax.swing.JLabel Email;
     private javax.swing.JLabel Logar;
     private javax.swing.JLabel Login;
     private javax.swing.JLabel Logo;
@@ -375,16 +451,16 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextField jTextFieldEmail;
-    private javax.swing.JTextField jTextFieldName;
+    private javax.swing.JLabel jlMsgLogin;
+    private javax.swing.JLabel jlMsgSenha;
+    private javax.swing.JSeparator jsLogin;
+    private javax.swing.JSeparator jsSenha;
     private javax.swing.JLabel minimizar;
     private javax.swing.JLabel sgva;
+    private javax.swing.JPasswordField tfSenha;
+    private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

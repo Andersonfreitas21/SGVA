@@ -55,10 +55,10 @@
                               <Component id="jTextFieldName" max="32767" attributes="0"/>
                               <Component id="jSeparator3" max="32767" attributes="0"/>
                               <Component id="Email" max="32767" attributes="0"/>
-                              <Component id="jTextFieldEmail" max="32767" attributes="0"/>
+                              <Component id="jTextFieldCpf" max="32767" attributes="0"/>
                               <Component id="jSeparator4" max="32767" attributes="0"/>
                               <Component id="User" max="32767" attributes="0"/>
-                              <Component id="jTextFieldUser" max="32767" attributes="0"/>
+                              <Component id="jTextFieldLogin" max="32767" attributes="0"/>
                               <Component id="jSeparator5" max="32767" attributes="0"/>
                               <Component id="Senha" max="32767" attributes="0"/>
                               <Component id="jPasswordFieldSenha" max="32767" attributes="0"/>
@@ -90,13 +90,13 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="Email" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldEmail" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldCpf" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="User" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldUser" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldLogin" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator5" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -127,12 +127,12 @@
         <Component class="javax.swing.JLabel" name="Nome">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Perpetua Titling MT" size="14" style="1"/>
+              <Font name="Century Gothic" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="40" green="4d" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="nome"/>
+            <Property name="text" type="java.lang.String" value="NOME"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldName">
@@ -160,7 +160,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldEmail">
+        <Component class="javax.swing.JTextField" name="jTextFieldCpf">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="12" style="0"/>
@@ -174,8 +174,8 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldEmailMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEmailActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldCpfMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCpfActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator4">
@@ -188,7 +188,7 @@
         <Component class="javax.swing.JLabel" name="Email">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Perpetua Titling MT" size="14" style="1"/>
+              <Font name="Century Gothic" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="40" green="4d" red="0" type="rgb"/>
@@ -199,15 +199,15 @@
         <Component class="javax.swing.JLabel" name="User">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Perpetua Titling MT" size="14" style="1"/>
+              <Font name="Century Gothic" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="40" green="4d" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="login"/>
+            <Property name="text" type="java.lang.String" value="LOGIN"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldUser">
+        <Component class="javax.swing.JTextField" name="jTextFieldLogin">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="12" style="0"/>
@@ -221,8 +221,8 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldUserMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldUserActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldLoginMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldLoginActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator5">
@@ -235,12 +235,12 @@
         <Component class="javax.swing.JLabel" name="Senha">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Perpetua Titling MT" size="14" style="1"/>
+              <Font name="Century Gothic" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="40" green="4d" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="senha"/>
+            <Property name="text" type="java.lang.String" value="SENHA"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPasswordFieldSenha">
@@ -296,12 +296,12 @@
         <Component class="javax.swing.JLabel" name="Retry_senha">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Perpetua Titling MT" size="14" style="1"/>
+              <Font name="Century Gothic" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="40" green="4d" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="repita senha"/>
+            <Property name="text" type="java.lang.String" value="REPITA A SENHA"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel5">
@@ -417,7 +417,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="140" y="30" width="-1" height="40"/>
+          <AbsoluteConstraints x="150" y="30" width="-1" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
