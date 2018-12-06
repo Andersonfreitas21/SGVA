@@ -340,8 +340,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btnAtualizar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Component id="btnExcluir" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="583" max="32767" attributes="0"/>
+                  <EmptySpace pref="405" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel4" pref="0" max="32767" attributes="0"/>
@@ -357,6 +361,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCancelar" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="btnSalvar" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="btnAtualizar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -735,6 +741,52 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnAtualizar">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="99" red="33" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Century Gothic" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Atualizar"/>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
+            <Property name="focusPainted" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtualizarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnExcluir">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="66" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Century Gothic" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Excluir"/>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
+            <Property name="focusPainted" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

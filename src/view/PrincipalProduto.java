@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import mensagens.ViewInfo;
 import util.Utilitarios;
+import mensagens.ViewConfirmação;
 
 /**
  *
@@ -32,10 +33,10 @@ public class PrincipalProduto extends javax.swing.JFrame {
     private ResultSet rs = null;
     private final Utilitarios utils = new Utilitarios();
     private final ViewInfo mensagem = new ViewInfo(null, true);
-//    private static final PrincipalProduto view = new PrincipalProduto();
+    private final ViewConfirmação Confirmação = new ViewConfirmação(null, true);
     DefaultTableModel modelo;
     String nomeSemana, data, hora, funcao;
-    
+
     public PrincipalProduto() {
         initComponents();
         preencheTabela();
@@ -43,7 +44,7 @@ public class PrincipalProduto extends javax.swing.JFrame {
         Timer timer = new Timer(1000, new hora());
         timer.start();
     }
-    
+
     private void diaDataSemana() {
         Date d = new Date();
 
@@ -81,7 +82,7 @@ public class PrincipalProduto extends javax.swing.JFrame {
 
         jlDiaDataSemana.setText(nomeSemana + " " + data);
     }
-    
+
     private void preencheTabela() {
         try {
             if (!conexao.obterConexao()) {
@@ -93,21 +94,21 @@ public class PrincipalProduto extends javax.swing.JFrame {
                 jTable1.setRowHeight(20);
 
                 preparedStatement = conexao.con.prepareStatement("SELECT "
-                        + "id_cliente, "
-                        + "cliente_nome, "
-                        + "cliente_cpf, "
-                        + "cliente_cpa, "
-                        + "cliente_telefone "
-                        + "FROM cliente");
+                        + "id_produto, "
+                        + "prod_nome, "
+                        + "prod_valor, "
+                        + "prod_categoria, "
+                        + "prod_estoque "
+                        + "FROM produto");
                 rs = preparedStatement.executeQuery();
 
                 while (rs.next()) {
                     modelo.addRow(new Object[]{
-                        rs.getString("id_cliente"),
-                        rs.getString("cliente_nome"),
-                        rs.getString("cliente_cpf"),
-                        rs.getString("cliente_cpa"),
-                        rs.getString("cliente_telefone")
+                        rs.getString("id_produto"),
+                        rs.getString("prod_nome"),
+                        rs.getString("prod_valor"),
+                        rs.getString("prod_categoria"),
+                        rs.getString("prod_estoque")
                     });
                 }
 
@@ -166,7 +167,7 @@ public class PrincipalProduto extends javax.swing.JFrame {
             try {
 
                 preparedStatement = conexao.con.prepareStatement("INSERT INTO produto "
-                        + "(nome_prod, valor_prod, descricao, estoque, categoria, data_cadas_prod) VALUES (?, ?, ?, ?, ?, ?)");
+                        + "(prod_nome, prod_valor, prod_descricao, prod_estoque, prod_categoria, prod_data_cadastro) VALUES (?, ?, ?, ?, ?, ?)");
                 preparedStatement.setString(1, jtfNomeProduto.getText());
                 preparedStatement.setDouble(2, Double.parseDouble(jtfValorProduto.getText()));
                 preparedStatement.setString(3, jTextAreaDesc.getText());
@@ -177,12 +178,13 @@ public class PrincipalProduto extends javax.swing.JFrame {
                 String dataCad = simpleDateFormat.format(jDateCad.getDate());
 
                 preparedStatement.setDate(6, utils.FormatarData(dataCad));
-                
+
                 int resposta = preparedStatement.executeUpdate();
 
                 if (resposta > 0) {
                     limparCampos();
-                    mensagem.setMensagem("MENSAGEM", "Dados inseridos com sucesso!", "/Icones/icons8_Ok_32px.png", 1, 87, 155);
+                    preencheTabela();
+                    mensagem.setMensagem("MENSAGEM", "Dados inseridos com sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
                     mensagem.setVisible(true);
                 }
 
@@ -194,6 +196,73 @@ public class PrincipalProduto extends javax.swing.JFrame {
             }
         }
 
+    }
+
+    private void SelecionarProduto() {
+
+        switch (jTable1.getSelectedRows().length) {
+            case 1:
+                jtfNomeProduto.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+                jtfValorProduto.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                jtfCategoria.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+                jtfEstoque.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+
+                //Fazer Update pelo Id do Cliente
+                
+                //UPDATE `lojaarms`.`produto` SET `prod_nome`='Escopeta 12 calibres', `prod_valor`='3450.02', `prod_descricao`='Escopeta 12 - calibres', `prod_estoque`='2', `prod_categoria`='escopeta_', `prod_data_cadastro`='2018-12-05' WHERE `id_produto`='18';
+                break;
+            case 0:
+                mensagem.setMensagem("ATENÇÃO", "Selecione um registro para editar!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                mensagem.setVisible(true);
+                break;
+            default:
+                mensagem.setMensagem("ATENÇÃO", "Selecione apenas um Cliente pra editar!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                mensagem.setVisible(true);
+                break;
+        }
+    }
+
+    private void ExcluirProduto() {
+        switch (jTable1.getSelectedRows().length) {
+            case 1:
+                try {
+                    Confirmação.setMensagem("ATENÇÃO", "<html><p style=\"text-align:center;\">Deseja realmente excluir<br/> esse produto?</p></html>", "/image/icons8_Warning_Shield_32px_3.png");
+                    Confirmação.setVisible(true);
+
+                    if (ViewConfirmação.Ação.equals("SIM")) {
+
+                        if (!conexao.obterConexao()) {
+                            mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/image/icons8_Cancel_32px_1.png", 183, 28, 28);
+                            mensagem.setVisible(true);
+                        } else {
+                            int Id_produto = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+                            preparedStatement = conexao.con.prepareStatement("DELETE FROM produto WHERE id_produto = ?");
+                            preparedStatement.setInt(1, Id_produto);
+                            preparedStatement.executeUpdate();
+
+                            modelo.removeRow(jTable1.getSelectedRow());
+
+                            conexao.close();
+                            preparedStatement.close();
+
+                            mensagem.setMensagem("MENSAGEM", "Produto excluído com Sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
+                            mensagem.setVisible(true);
+                        }
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+                break;
+            case 0:
+                mensagem.setMensagem("ATENÇÃO", "Selecione um produto para excluir!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                mensagem.setVisible(true);
+                break;
+            default:
+                mensagem.setMensagem("ATENÇÃO", "Selecione apenas um produto para excluir!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                mensagem.setVisible(true);
+                break;
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -236,6 +305,8 @@ public class PrincipalProduto extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -599,6 +670,34 @@ public class PrincipalProduto extends javax.swing.JFrame {
             }
         });
 
+        btnAtualizar.setBackground(new java.awt.Color(51, 153, 0));
+        btnAtualizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.setContentAreaFilled(false);
+        btnAtualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAtualizar.setFocusPainted(false);
+        btnAtualizar.setOpaque(true);
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setBackground(new java.awt.Color(102, 0, 0));
+        btnExcluir.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcluir.setText("Excluir");
+        btnExcluir.setContentAreaFilled(false);
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluir.setFocusPainted(false);
+        btnExcluir.setOpaque(true);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -607,8 +706,12 @@ public class PrincipalProduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAtualizar)
+                .addGap(14, 14, 14)
+                .addComponent(btnExcluir)
+                .addGap(11, 11, 11)
                 .addComponent(btnCancelar)
-                .addContainerGap(583, Short.MAX_VALUE))
+                .addContainerGap(405, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
@@ -620,7 +723,9 @@ public class PrincipalProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtualizar)
+                    .addComponent(btnExcluir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -673,6 +778,14 @@ public class PrincipalProduto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        SelecionarProduto();
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        ExcluirProduto();
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     class hora implements ActionListener {
 
         @Override
@@ -713,7 +826,9 @@ public class PrincipalProduto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Novo_cadastro2;
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel fechar;
     private com.toedter.calendar.JDateChooser jDateCad;

@@ -19,8 +19,8 @@ public class Login extends javax.swing.JFrame {
     private ResultSet rs = null;
     private PreparedStatement preparedStatement = null;
     private String senha = "";
+
     
-    //private static final Login view = new Login();
     private ViewInfo mensagem = new ViewInfo(null, true);
 
     public Login() {
@@ -40,7 +40,7 @@ public class Login extends javax.swing.JFrame {
                     mensagem.setVisible(true);
                 } else {
                     try {
-                        preparedStatement = conexao.con.prepareStatement("SELECT login , func_senha  FROM funcionario WHERE login = ? AND func_senha = ?");
+                        preparedStatement = conexao.con.prepareStatement("SELECT login, func_senha  FROM funcionario WHERE login = ? AND func_senha = ?");
                         preparedStatement.setString(1, tfUsuario.getText());
                         preparedStatement.setString(2, senha);
                         rs = preparedStatement.executeQuery();
@@ -57,7 +57,6 @@ public class Login extends javax.swing.JFrame {
                         e.printStackTrace();
                     }
                 }
-
                 return null;
             }
 
@@ -69,13 +68,13 @@ public class Login extends javax.swing.JFrame {
                         preparedStatement.close();
 
                         Principal viewPrincipal = new Principal();
-//                        Login view = new Login();
+                        Login login = new Login();
                         viewPrincipal.setVisible(true);
                         viewPrincipal.pack();
                         viewPrincipal.setLocationRelativeTo(null);
                         viewPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        
-                        
+                        login.dispose();
+
                     } else {
                         conexao.close();
                         preparedStatement.close();
@@ -88,12 +87,11 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         }.execute();
-        this.dispose();
     }
 
     private void verificaLogin() {
         senha = new String(tfSenha.getPassword());
-        
+
         if (tfUsuario.getText().isEmpty() && senha.equals("")) {
             jlMsgLogin.setText("*Campo obrigatório");
             jlMsgLogin.setForeground(Color.red);
@@ -111,9 +109,7 @@ public class Login extends javax.swing.JFrame {
             jlMsgSenha.setForeground(Color.red);
             jsSenha.setForeground(Color.red);
         } else {
-            java.awt.EventQueue.invokeLater(() -> {
-                efetuarLogin();
-            });
+            efetuarLogin();
         }
     }
 

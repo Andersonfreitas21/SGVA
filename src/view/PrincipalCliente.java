@@ -7,11 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -20,6 +24,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import mensagens.ViewInfo;
 import util.Utilitarios;
+import mensagens.ViewConfirmação;
 
 /**
  *
@@ -32,10 +37,10 @@ public class PrincipalCliente extends javax.swing.JFrame {
     private ResultSet rs = null;
     private final Utilitarios utils = new Utilitarios();
     private final ViewInfo mensagem = new ViewInfo(null, true);
-//    private static final PrincipalCliente view = new PrincipalCliente();
+    private final ViewConfirmação Confirmação = new ViewConfirmação(null, true);
     DefaultTableModel modelo;
     String nomeSemana, data, hora, funcao;
-    
+
     public PrincipalCliente() {
         initComponents();
         preencheTabela();
@@ -43,7 +48,7 @@ public class PrincipalCliente extends javax.swing.JFrame {
         Timer timer = new Timer(1000, new hora());
         timer.start();
     }
-    
+
     private void diaDataSemana() {
         Date d = new Date();
 
@@ -81,7 +86,7 @@ public class PrincipalCliente extends javax.swing.JFrame {
 
         jlDiaDataSemana.setText(nomeSemana + " " + data);
     }
-    
+
     private void preencheTabela() {
         try {
             if (!conexao.obterConexao()) {
@@ -167,7 +172,7 @@ public class PrincipalCliente extends javax.swing.JFrame {
             try {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
-                preparedStatement = conexao.con.prepareStatement("INSERT INTO lojaarms.cliente "
+                preparedStatement = conexao.con.prepareStatement("INSERT INTO cliente "
                         + "(cliente_nome, cliente_DataNasc, cliente_cpf, cliente_DataCad, cliente_end, cliente_telefone, cliente_cpa) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
                 preparedStatement.setString(1, jtfNome.getText());
@@ -184,7 +189,8 @@ public class PrincipalCliente extends javax.swing.JFrame {
 
                 if (resposta > 0) {
                     limparCampos();
-                    mensagem.setMensagem("MENSAGEM", "Dados inseridos com sucesso!", "/Icones/icons8_Ok_32px.png", 1, 87, 155);
+                    preencheTabela();
+                    mensagem.setMensagem("MENSAGEM", "Dados inseridos com sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
                     mensagem.setVisible(true);
                 }
 
@@ -196,6 +202,98 @@ public class PrincipalCliente extends javax.swing.JFrame {
             }
         }
 
+    }
+
+    private void SelecionarCliente() throws SQLException, ParseException {
+        
+        switch (jTable1.getSelectedRows().length) {
+            case 1:
+                jtfNome.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+                jtfCpf.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                jtfCpa.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+                jtfTelefone.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+
+                //Fazer Update pelo Id do Cliente
+                //UPDATE `lojaarms`.`cliente` SET `cliente_nome`='ANDERSON FREITAS NOGUEIRA', `cliente_DataNasc`='1991-10-21', `cliente_cpf`='4651228311', `cliente_DataCad`='2018-12-06', `cliente_end`='Rua Valdivino Santiago,212', `cliente_telefone`='(88) 997128991', `cliente_cpa`='9876543' WHERE `id_cliente`='7';
+                if (!conexao.obterConexao()) {
+                    mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/image/icons8_Cancel_32px_1.png", 183, 28, 28);
+                    mensagem.setVisible(true);
+                } else {
+                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                    preparedStatement = conexao.con.prepareStatement("UPDATE cliente SET cliente_nome = ?, cliente_DataNasc = ?, cliente_cpf = ?, cliente_DataCad = ?,cliente_end = ?, cliente_telefone = ?, cliente_cpa = ? WHERE id_cliente = ?");
+                    preparedStatement.setString(1, jtfNome.getText());
+                    String DateNasc = format.format(jDateNasc.getDate());
+                    preparedStatement.setDate(2, utils.FormatarData(DateNasc));
+                    preparedStatement.setString(3, jtfCpf.getText());
+                    String DateCad = format.format(jDateCad.getDate());
+                    preparedStatement.setDate(4, utils.FormatarData(DateCad));
+                    preparedStatement.setString(5, jtfEnd.getText());
+                    preparedStatement.setString(6, jtfTelefone.getText());
+                    preparedStatement.setString(7, jtfCpa.getText());
+                    preparedStatement.executeUpdate();
+
+                    modelo.removeRow(jTable1.getSelectedRow());
+
+                    conexao.close();
+                    preparedStatement.close();
+
+                    mensagem.setMensagem("MENSAGEM", "Cliente excluído com Sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
+                    mensagem.setVisible(true);
+                }
+
+                break;
+            case 0:
+                mensagem.setMensagem("ATENÇÃO", "Selecione um registro para editar!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                mensagem.setVisible(true);
+                break;
+            default:
+                mensagem.setMensagem("ATENÇÃO", "Selecione apenas um Cliente pra editar!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                mensagem.setVisible(true);
+                break;
+        }
+    }
+
+    private void ExcluirCliente() {
+        switch (jTable1.getSelectedRows().length) {
+            case 1:
+                try {
+                    Confirmação.setMensagem("ATENÇÃO", "<html><p style=\"text-align:center;\">Deseja realmente excluir<br/> esse cliente?</p></html>", "/image/icons8_Warning_Shield_32px_3.png");
+                    Confirmação.setVisible(true);
+
+                    if (ViewConfirmação.Ação.equals("SIM")) {
+
+                        if (!conexao.obterConexao()) {
+                            mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/image/icons8_Cancel_32px_1.png", 183, 28, 28);
+                            mensagem.setVisible(true);
+                        } else {
+                            int Id_cliente = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+                            preparedStatement = conexao.con.prepareStatement("DELETE FROM cliente WHERE id_cliente = ?");
+                            preparedStatement.setInt(1, Id_cliente);
+                            preparedStatement.executeUpdate();
+
+                            modelo.removeRow(jTable1.getSelectedRow());
+
+                            conexao.close();
+                            preparedStatement.close();
+
+                            mensagem.setMensagem("MENSAGEM", "Cliente excluído com Sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
+                            mensagem.setVisible(true);
+                        }
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+                break;
+            case 0:
+                mensagem.setMensagem("ATENÇÃO", "Selecione um cliente para excluir!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                mensagem.setVisible(true);
+                break;
+            default:
+                mensagem.setMensagem("ATENÇÃO", "Selecione apenas um cliente para excluir!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                mensagem.setVisible(true);
+                break;
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -239,6 +337,8 @@ public class PrincipalCliente extends javax.swing.JFrame {
         jDateCad = new com.toedter.calendar.JDateChooser();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -600,6 +700,34 @@ public class PrincipalCliente extends javax.swing.JFrame {
             }
         });
 
+        btnAtualizar.setBackground(new java.awt.Color(51, 153, 0));
+        btnAtualizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.setContentAreaFilled(false);
+        btnAtualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAtualizar.setFocusPainted(false);
+        btnAtualizar.setOpaque(true);
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setBackground(new java.awt.Color(102, 0, 0));
+        btnExcluir.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcluir.setText("Excluir");
+        btnExcluir.setContentAreaFilled(false);
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluir.setFocusPainted(false);
+        btnExcluir.setOpaque(true);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -608,8 +736,12 @@ public class PrincipalCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAtualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
-                .addContainerGap(586, Short.MAX_VALUE))
+                .addContainerGap(410, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
@@ -618,14 +750,16 @@ public class PrincipalCliente extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir))
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, 540));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 760, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -673,7 +807,13 @@ public class PrincipalCliente extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 2) {
-            //SelecionarCliente();
+            try {
+                SelecionarCliente();
+            } catch (SQLException ex) {
+                Logger.getLogger(PrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(PrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -685,6 +825,20 @@ public class PrincipalCliente extends javax.swing.JFrame {
         cadProduto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        try {
+            SelecionarCliente();
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(PrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        ExcluirCliente();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     class hora implements ActionListener {
 
@@ -726,7 +880,9 @@ public class PrincipalCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Novo_cadastro2;
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel fechar;
     private com.toedter.calendar.JDateChooser jDateCad;
