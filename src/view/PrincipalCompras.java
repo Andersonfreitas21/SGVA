@@ -30,7 +30,7 @@ import mensagens.ViewConfirmação;
  *
  * @author Programador-03
  */
-public class PrincipalCliente extends javax.swing.JFrame {
+public class PrincipalCompras extends javax.swing.JFrame {
 
     private final Conexao conexao = new Conexao();
     private PreparedStatement preparedStatement = null;
@@ -41,7 +41,7 @@ public class PrincipalCliente extends javax.swing.JFrame {
     DefaultTableModel modelo;
     String nomeSemana, data, hora, funcao;
 
-    public PrincipalCliente() {
+    public PrincipalCompras() {
         initComponents();
         preencheTabela();
         diaDataSemana();
@@ -447,27 +447,17 @@ public class PrincipalCliente extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 77, 64));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Battelefield_45px_1.png"))); // NOI18N
         jLabel2.setText("VENDAS");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-        });
+        jLabel2.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 77, 64));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Defense_45px.png"))); // NOI18N
         jLabel3.setText("CLIENTES");
-        jLabel3.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 77, 64));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Magazine_45px.png"))); // NOI18N
         jLabel4.setText("ESTOQUE");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -601,7 +591,7 @@ public class PrincipalCliente extends javax.swing.JFrame {
 
         Novo_cadastro2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         Novo_cadastro2.setForeground(new java.awt.Color(0, 77, 64));
-        Novo_cadastro2.setText("Cadastro de Clientes");
+        Novo_cadastro2.setText("REALIZAR UMA COMPRA");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -609,7 +599,7 @@ public class PrincipalCliente extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(274, 274, 274)
-                .addComponent(Novo_cadastro2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                .addComponent(Novo_cadastro2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(291, 291, 291))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
@@ -834,9 +824,9 @@ public class PrincipalCliente extends javax.swing.JFrame {
             try {
                 SelecionarCliente();
             } catch (SQLException ex) {
-                Logger.getLogger(PrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
-                Logger.getLogger(PrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -854,9 +844,9 @@ public class PrincipalCliente extends javax.swing.JFrame {
         try {
             SelecionarCliente();
         } catch (SQLException ex) {
-            Logger.getLogger(PrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
-            Logger.getLogger(PrincipalCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
@@ -867,24 +857,6 @@ public class PrincipalCliente extends javax.swing.JFrame {
     private void jtfCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfCpfActionPerformed
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        PrincipalCompras cadCompras = new PrincipalCompras();
-        cadCompras.setVisible(true);
-        cadCompras.pack();
-        cadCompras.setLocationRelativeTo(null);
-        cadCompras.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        PrincipalEstoque estoque = new PrincipalEstoque();
-        estoque.setVisible(true);
-        estoque.pack();
-        estoque.setLocationRelativeTo(null);
-        estoque.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
 
     class hora implements ActionListener {
 
@@ -908,18 +880,18 @@ public class PrincipalCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PrincipalCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PrincipalCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PrincipalCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PrincipalCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PrincipalCliente().setVisible(true);
+                new PrincipalCompras().setVisible(true);
             }
         });
     }
