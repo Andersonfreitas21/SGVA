@@ -257,7 +257,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/image/icons8_Battelefield_45px_1.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="VENDAS"/>
+            <Property name="text" type="java.lang.String" value="COMPRAS"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -358,10 +358,10 @@
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel16" pref="322" max="32767" attributes="0"/>
                                   <Component id="jtfNome" max="32767" attributes="0"/>
-                                  <Component id="jLabel16" pref="430" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel17" max="32767" attributes="0"/>
                                   <Component id="jtfCpf" max="32767" attributes="0"/>
@@ -477,7 +477,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="40" green="4d" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nome"/>
+                <Property name="text" type="java.lang.String" value="Cliente"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
@@ -609,7 +609,7 @@
                     <Property name="autoResizeMode" type="int" value="4"/>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="10" prefWidth="10" resizable="true">
+                        <Column maxWidth="30" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>

@@ -410,7 +410,7 @@ public class PrincipalProduto extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 77, 64));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Battelefield_45px_1.png"))); // NOI18N
-        jLabel2.setText("VENDAS");
+        jLabel2.setText("COMPRAS");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -555,8 +555,7 @@ public class PrincipalProduto extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(10);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(30);
             jTable1.getColumnModel().getColumn(1).setMinWidth(80);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(80);
             jTable1.getColumnModel().getColumn(2).setMinWidth(30);

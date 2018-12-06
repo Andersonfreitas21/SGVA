@@ -446,7 +446,7 @@ public class PrincipalCompras extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 77, 64));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_Battelefield_45px_1.png"))); // NOI18N
-        jLabel2.setText("VENDAS");
+        jLabel2.setText("COMPRAS");
         jLabel2.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -494,7 +494,7 @@ public class PrincipalCompras extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel16.setText("Nome");
+        jLabel16.setText("Cliente");
         jLabel16.setToolTipText("");
 
         jtfNome.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -583,8 +583,7 @@ public class PrincipalCompras extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(10);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(30);
             jTable1.getColumnModel().getColumn(1).setMinWidth(120);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(120);
         }
@@ -607,9 +606,9 @@ public class PrincipalCompras extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfNome)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                            .addComponent(jtfNome))
+                        .addGap(118, 118, 118)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jtfCpf))
