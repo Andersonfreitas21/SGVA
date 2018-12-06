@@ -13,7 +13,7 @@ public class ViewConfirmação extends javax.swing.JDialog {
     public ViewConfirmação(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Icones/128x128.png")));
+        //setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/128x128.png")));
         
         btnSim.requestFocus();
     }
