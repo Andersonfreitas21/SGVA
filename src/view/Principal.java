@@ -17,6 +17,7 @@ import javax.swing.Timer;
  */
 public class Principal extends javax.swing.JFrame {
 
+    private static final Principal view = new Principal();
     String nomeSemana, data, hora, funcao;
 
     public Principal() {
@@ -26,7 +27,6 @@ public class Principal extends javax.swing.JFrame {
         timer.start();
     }
     
-    private static final Principal view = new Principal();
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

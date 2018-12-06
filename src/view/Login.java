@@ -68,17 +68,17 @@ public class Login extends javax.swing.JFrame {
                         conexao.close();
                         preparedStatement.close();
 
-                        Principal viewPrincipal = new Principal();
-                        viewPrincipal.setVisible(true);
-                        viewPrincipal.pack();
-                        viewPrincipal.setLocationRelativeTo(null);
-                        viewPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                        Principal viewPrincipal = new Principal();
+                        view.setVisible(true);
+                        view.pack();
+                        view.setLocationRelativeTo(null);
+                        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         view.dispose();
                         
                     } else {
                         conexao.close();
                         preparedStatement.close();
-                        mensagem.setMensagem("ATENÇÃO", "Usuário e/ou Senha incorreto(s)!", "/Icones/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                        mensagem.setMensagem("ATENÇÃO", "Usuário e/ou Senha incorreto(s)!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
                         mensagem.setVisible(true);
                     }
                 } catch (Exception e) {
@@ -217,6 +217,11 @@ public class Login extends javax.swing.JFrame {
         Cancel.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         Cancel.setForeground(new java.awt.Color(255, 255, 255));
         Cancel.setText("CANCEL");
+        Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CancelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -424,6 +429,10 @@ public class Login extends javax.swing.JFrame {
     private void minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizarMouseClicked
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_minimizarMouseClicked
+
+    private void CancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_CancelMouseClicked
 
     /**
      * @param args the command line arguments
