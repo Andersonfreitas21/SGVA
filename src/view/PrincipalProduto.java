@@ -32,7 +32,7 @@ public class PrincipalProduto extends javax.swing.JFrame {
     private ResultSet rs = null;
     private final Utilitarios utils = new Utilitarios();
     private final ViewInfo mensagem = new ViewInfo(null, true);
-    private static final PrincipalProduto view = new PrincipalProduto();
+//    private static final PrincipalProduto view = new PrincipalProduto();
     DefaultTableModel modelo;
     String nomeSemana, data, hora, funcao;
     
@@ -631,8 +631,6 @@ public class PrincipalProduto extends javax.swing.JFrame {
 
     private void fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseClicked
         this.dispose();
-        Login login = new Login();
-        login.setVisible(true);
     }//GEN-LAST:event_fecharMouseClicked
 
     private void minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizarMouseClicked
@@ -672,7 +670,7 @@ public class PrincipalProduto extends javax.swing.JFrame {
         cadCliente.pack();
         cadCliente.setLocationRelativeTo(null);
         cadCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        view.dispose();
+        this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
 
     class hora implements ActionListener {

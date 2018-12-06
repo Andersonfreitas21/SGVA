@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -17,7 +16,7 @@ import javax.swing.Timer;
  */
 public class Principal extends javax.swing.JFrame {
 
-    private static final Principal view = new Principal();
+    //private static final Principal view = new Principal();
     String nomeSemana, data, hora, funcao;
 
     public Principal() {
@@ -205,8 +204,6 @@ public class Principal extends javax.swing.JFrame {
 
     private void fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecharMouseClicked
         this.dispose();
-        Login login = new Login();
-        login.setVisible(true);
     }//GEN-LAST:event_fecharMouseClicked
 
     private void minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizarMouseClicked
@@ -219,7 +216,7 @@ public class Principal extends javax.swing.JFrame {
         cadProduto.pack();
         cadProduto.setLocationRelativeTo(null);
         cadProduto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        view.dispose();
+        this.dispose();
 
     }//GEN-LAST:event_jLabel9MouseClicked
 
@@ -229,7 +226,7 @@ public class Principal extends javax.swing.JFrame {
         cadCliente.pack();
         cadCliente.setLocationRelativeTo(null);
         cadCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        view.dispose();
+        this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void diaDataSemana() {

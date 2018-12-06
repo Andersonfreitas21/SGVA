@@ -20,7 +20,7 @@ public class Login extends javax.swing.JFrame {
     private PreparedStatement preparedStatement = null;
     private String senha = "";
     
-    private static final Login view = new Login();
+    //private static final Login view = new Login();
     private ViewInfo mensagem = new ViewInfo(null, true);
 
     public Login() {
@@ -36,19 +36,19 @@ public class Login extends javax.swing.JFrame {
             @Override
             protected Void doInBackground() {
                 if (!conexao.obterConexao()) {
-                    mensagem.setMensagem("ATENÇÃO", "Não foi possível conectar-se ao Banco de Dados!", "/Icones/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+                    mensagem.setMensagem("ATENÇÃO", "Não foi possível conectar-se ao Banco de Dados!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
                     mensagem.setVisible(true);
                 } else {
                     try {
-                        preparedStatement = conexao.con.prepareStatement("SELECT funcionario.login , funcionario.senha  FROM `funcionario` WHERE funcionario.login = ? AND funcionario.senha = ?");
+                        preparedStatement = conexao.con.prepareStatement("SELECT login , func_senha  FROM funcionario WHERE login = ? AND func_senha = ?");
                         preparedStatement.setString(1, tfUsuario.getText());
                         preparedStatement.setString(2, senha);
                         rs = preparedStatement.executeQuery();
 
                         if (rs.next() && rs != null) {
                             resposta = 1;
-                            nome = rs.getString("funcionario.login");
-                            senha = rs.getString("funcionario.senha");
+                            nome = rs.getString("login");
+                            senha = rs.getString("func_senha");
 
                         } else {
                             resposta = 0;
@@ -68,12 +68,13 @@ public class Login extends javax.swing.JFrame {
                         conexao.close();
                         preparedStatement.close();
 
-//                        Principal viewPrincipal = new Principal();
-                        view.setVisible(true);
-                        view.pack();
-                        view.setLocationRelativeTo(null);
-                        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        view.dispose();
+                        Principal viewPrincipal = new Principal();
+//                        Login view = new Login();
+                        viewPrincipal.setVisible(true);
+                        viewPrincipal.pack();
+                        viewPrincipal.setLocationRelativeTo(null);
+                        viewPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        
                         
                     } else {
                         conexao.close();
@@ -87,6 +88,7 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         }.execute();
+        this.dispose();
     }
 
     private void verificaLogin() {
