@@ -43,7 +43,7 @@ public class PrincipalCompras extends javax.swing.JFrame {
 
     public PrincipalCompras() {
         initComponents();
-        preencheTabela();
+//        preencheTabela();
         diaDataSemana();
         Timer timer = new Timer(1000, new hora());
         timer.start();
@@ -87,214 +87,214 @@ public class PrincipalCompras extends javax.swing.JFrame {
         jlDiaDataSemana.setText(nomeSemana + " " + data);
     }
 
-    private void preencheTabela() {
-        try {
-            if (!conexao.obterConexao()) {
-                mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
-                mensagem.setVisible(true);
-            } else {
-                modelo = (DefaultTableModel) jTable1.getModel();
-                modelo.setNumRows(0);
-                jTable1.setRowHeight(20);
+//    private void preencheTabela() {
+//        try {
+//            if (!conexao.obterConexao()) {
+//                mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
+//                mensagem.setVisible(true);
+//            } else {
+//                modelo = (DefaultTableModel) jTable1.getModel();
+//                modelo.setNumRows(0);
+//                jTable1.setRowHeight(20);
+//
+//                preparedStatement = conexao.con.prepareStatement("SELECT "
+//                        + "id_cliente, "
+//                        + "cliente_nome, "
+//                        + "cliente_cpf, "
+//                        + "cliente_cpa, "
+//                        + "cliente_telefone "
+//                        + "FROM cliente");
+//                rs = preparedStatement.executeQuery();
+//
+//                while (rs.next()) {
+//                    modelo.addRow(new Object[]{
+//                        rs.getString("id_cliente"),
+//                        rs.getString("cliente_nome"),
+//                        rs.getString("cliente_cpf"),
+//                        rs.getString("cliente_cpa"),
+//                        rs.getString("cliente_telefone")
+//                    });
+//                }
+//
+//                jTable1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+//                    @Override
+//                    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+//
+//                        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+//
+//                        if (isSelected == true) {
+//                            setBackground(new Color(51, 153, 255));
+//                            setForeground(Color.WHITE);
+//                        } else if (row % 2 == 0) {
+//                            setBackground(new Color(248, 248, 248));
+//                            setForeground(Color.BLACK);
+//                        } else {
+//                            setBackground(table.getBackground());
+//                            setForeground(table.getForeground());
+//                        }
+//
+//                        return this;
+//                    }
+//                });
+//
+//                jTable1.repaint();
+//
+//                conexao.close();
+//                preparedStatement.close();
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void limparCampos() {
+//        jtfNome.setText("");
+//        jtfCpf.setText("");
+//        jtfCompra.setText("");
+//        jDateNasc.setDate(null);
+//        jDateCad.setDate(null);
+//        jtfEnd.setText("");
+//        jtfTelefone.setText("");
+//    }
 
-                preparedStatement = conexao.con.prepareStatement("SELECT "
-                        + "id_cliente, "
-                        + "cliente_nome, "
-                        + "cliente_cpf, "
-                        + "cliente_cpa, "
-                        + "cliente_telefone "
-                        + "FROM cliente");
-                rs = preparedStatement.executeQuery();
+//    private void Salvar() {
+//        if (jtfNome.getText().isEmpty() || jtfNome.getText() == null && jtfCpf.getText().isEmpty() || jtfCpf.getText() == null) {
+//            mensagem.setMensagem("ATENÇÃO", "Prencha todos os dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
+//            mensagem.setVisible(true);
+//        } else {
+//            if (!conexao.obterConexao()) {
+//                mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
+//                mensagem.setVisible(true);
+//                return;
+//            }
+//
+//            try {
+//                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+//
+//                preparedStatement = conexao.con.prepareStatement("INSERT INTO cliente "
+//                        + "(cliente_nome, cliente_DataNasc, cliente_cpf, cliente_DataCad, cliente_end, cliente_telefone, cliente_cpa) VALUES (?, ?, ?, ?, ?, ?, ?)");
+//
+//                preparedStatement.setString(1, jtfNome.getText());
+//                String DateNasc = format.format(jDateNasc.getDate());
+//                preparedStatement.setDate(2, utils.FormatarData(DateNasc));
+//                preparedStatement.setString(3, jtfCpf.getText());
+//                String DateCad = format.format(jDateCad.getDate());
+//                preparedStatement.setDate(4, utils.FormatarData(DateCad));
+//                preparedStatement.setString(5, jtfEnd.getText());
+//                preparedStatement.setString(6, jtfTelefone.getText());
+//                preparedStatement.setString(7, jtfCompra.getText());
+//
+//                int resposta = preparedStatement.executeUpdate();
+//
+//                if (resposta > 0) {
+//                    limparCampos();
+//                    preencheTabela();
+//                    mensagem.setMensagem("MENSAGEM", "Dados inseridos com sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
+//                    mensagem.setVisible(true);
+//                }
+//
+//                conexao.close();
+//                preparedStatement.close();
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
+//                e.printStackTrace();
+//            }
+//        }
+//
+//    }
 
-                while (rs.next()) {
-                    modelo.addRow(new Object[]{
-                        rs.getString("id_cliente"),
-                        rs.getString("cliente_nome"),
-                        rs.getString("cliente_cpf"),
-                        rs.getString("cliente_cpa"),
-                        rs.getString("cliente_telefone")
-                    });
-                }
+//    private void SelecionarCliente() throws SQLException, ParseException {
+//        
+//        switch (jTable1.getSelectedRows().length) {
+//            case 1:
+//                jtfNome.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+//                jtfCpf.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+//                jtfCompra.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+//                jtfTelefone.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+//
+//                //Fazer Update pelo Id do Cliente
+//                //UPDATE `lojaarms`.`cliente` SET `cliente_nome`='ANDERSON FREITAS NOGUEIRA', `cliente_DataNasc`='1991-10-21', `cliente_cpf`='4651228311', `cliente_DataCad`='2018-12-06', `cliente_end`='Rua Valdivino Santiago,212', `cliente_telefone`='(88) 997128991', `cliente_cpa`='9876543' WHERE `id_cliente`='7';
+//                if (!conexao.obterConexao()) {
+//                    mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/image/icons8_Cancel_32px_1.png", 183, 28, 28);
+//                    mensagem.setVisible(true);
+//                } else {
+//                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+//                    preparedStatement = conexao.con.prepareStatement("UPDATE cliente SET cliente_nome = ?, cliente_DataNasc = ?, cliente_cpf = ?, cliente_DataCad = ?,cliente_end = ?, cliente_telefone = ?, cliente_cpa = ? WHERE id_cliente = ?");
+//                    preparedStatement.setString(1, jtfNome.getText());
+//                    String DateNasc = format.format(jDateNasc.getDate());
+//                    preparedStatement.setDate(2, utils.FormatarData(DateNasc));
+//                    preparedStatement.setString(3, jtfCpf.getText());
+//                    String DateCad = format.format(jDateCad.getDate());
+//                    preparedStatement.setDate(4, utils.FormatarData(DateCad));
+//                    preparedStatement.setString(5, jtfEnd.getText());
+//                    preparedStatement.setString(6, jtfTelefone.getText());
+//                    preparedStatement.setString(7, jtfCompra.getText());
+//                    preparedStatement.executeUpdate();
+//
+//                    //modelo.removeRow(jTable1.getSelectedRow());
+//                    preencheTabela();
+//                    conexao.close();
+//                    preparedStatement.close();
+//
+//                    mensagem.setMensagem("MENSAGEM", "Cliente atualizado com Sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
+//                    mensagem.setVisible(true);
+//                }
+//
+//                break;
+//            case 0:
+//                mensagem.setMensagem("ATENÇÃO", "Selecione um registro para editar!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+//                mensagem.setVisible(true);
+//                break;
+//            default:
+//                mensagem.setMensagem("ATENÇÃO", "Selecione apenas um Cliente pra editar!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+//                mensagem.setVisible(true);
+//                break;
+//        }
+//    }
 
-                jTable1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-                    @Override
-                    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-
-                        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-
-                        if (isSelected == true) {
-                            setBackground(new Color(51, 153, 255));
-                            setForeground(Color.WHITE);
-                        } else if (row % 2 == 0) {
-                            setBackground(new Color(248, 248, 248));
-                            setForeground(Color.BLACK);
-                        } else {
-                            setBackground(table.getBackground());
-                            setForeground(table.getForeground());
-                        }
-
-                        return this;
-                    }
-                });
-
-                jTable1.repaint();
-
-                conexao.close();
-                preparedStatement.close();
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        }
-    }
-
-    public void limparCampos() {
-        jtfNome.setText("");
-        jtfCpf.setText("");
-        jtfCpa.setText("");
-        jDateNasc.setDate(null);
-        jDateCad.setDate(null);
-        jtfEnd.setText("");
-        jtfTelefone.setText("");
-    }
-
-    private void Salvar() {
-        if (jtfNome.getText().isEmpty() || jtfNome.getText() == null && jtfCpf.getText().isEmpty() || jtfCpf.getText() == null) {
-            mensagem.setMensagem("ATENÇÃO", "Prencha todos os dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
-            mensagem.setVisible(true);
-        } else {
-            if (!conexao.obterConexao()) {
-                mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
-                mensagem.setVisible(true);
-                return;
-            }
-
-            try {
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-
-                preparedStatement = conexao.con.prepareStatement("INSERT INTO cliente "
-                        + "(cliente_nome, cliente_DataNasc, cliente_cpf, cliente_DataCad, cliente_end, cliente_telefone, cliente_cpa) VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-                preparedStatement.setString(1, jtfNome.getText());
-                String DateNasc = format.format(jDateNasc.getDate());
-                preparedStatement.setDate(2, utils.FormatarData(DateNasc));
-                preparedStatement.setString(3, jtfCpf.getText());
-                String DateCad = format.format(jDateCad.getDate());
-                preparedStatement.setDate(4, utils.FormatarData(DateCad));
-                preparedStatement.setString(5, jtfEnd.getText());
-                preparedStatement.setString(6, jtfTelefone.getText());
-                preparedStatement.setString(7, jtfCpa.getText());
-
-                int resposta = preparedStatement.executeUpdate();
-
-                if (resposta > 0) {
-                    limparCampos();
-                    preencheTabela();
-                    mensagem.setMensagem("MENSAGEM", "Dados inseridos com sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
-                    mensagem.setVisible(true);
-                }
-
-                conexao.close();
-                preparedStatement.close();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-    private void SelecionarCliente() throws SQLException, ParseException {
-        
-        switch (jTable1.getSelectedRows().length) {
-            case 1:
-                jtfNome.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
-                jtfCpf.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-                jtfCpa.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
-                jtfTelefone.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
-
-                //Fazer Update pelo Id do Cliente
-                //UPDATE `lojaarms`.`cliente` SET `cliente_nome`='ANDERSON FREITAS NOGUEIRA', `cliente_DataNasc`='1991-10-21', `cliente_cpf`='4651228311', `cliente_DataCad`='2018-12-06', `cliente_end`='Rua Valdivino Santiago,212', `cliente_telefone`='(88) 997128991', `cliente_cpa`='9876543' WHERE `id_cliente`='7';
-                if (!conexao.obterConexao()) {
-                    mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/image/icons8_Cancel_32px_1.png", 183, 28, 28);
-                    mensagem.setVisible(true);
-                } else {
-                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                    preparedStatement = conexao.con.prepareStatement("UPDATE cliente SET cliente_nome = ?, cliente_DataNasc = ?, cliente_cpf = ?, cliente_DataCad = ?,cliente_end = ?, cliente_telefone = ?, cliente_cpa = ? WHERE id_cliente = ?");
-                    preparedStatement.setString(1, jtfNome.getText());
-                    String DateNasc = format.format(jDateNasc.getDate());
-                    preparedStatement.setDate(2, utils.FormatarData(DateNasc));
-                    preparedStatement.setString(3, jtfCpf.getText());
-                    String DateCad = format.format(jDateCad.getDate());
-                    preparedStatement.setDate(4, utils.FormatarData(DateCad));
-                    preparedStatement.setString(5, jtfEnd.getText());
-                    preparedStatement.setString(6, jtfTelefone.getText());
-                    preparedStatement.setString(7, jtfCpa.getText());
-                    preparedStatement.executeUpdate();
-
-                    //modelo.removeRow(jTable1.getSelectedRow());
-                    preencheTabela();
-                    conexao.close();
-                    preparedStatement.close();
-
-                    mensagem.setMensagem("MENSAGEM", "Cliente atualizado com Sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
-                    mensagem.setVisible(true);
-                }
-
-                break;
-            case 0:
-                mensagem.setMensagem("ATENÇÃO", "Selecione um registro para editar!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
-                mensagem.setVisible(true);
-                break;
-            default:
-                mensagem.setMensagem("ATENÇÃO", "Selecione apenas um Cliente pra editar!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
-                mensagem.setVisible(true);
-                break;
-        }
-    }
-
-    private void ExcluirCliente() {
-        switch (jTable1.getSelectedRows().length) {
-            case 1:
-                try {
-                    Confirmação.setMensagem("ATENÇÃO", "<html><p style=\"text-align:center;\">Deseja realmente excluir<br/> esse cliente?</p></html>", "/image/icons8_Warning_Shield_32px_3.png");
-                    Confirmação.setVisible(true);
-
-                    if (ViewConfirmação.Ação.equals("SIM")) {
-
-                        if (!conexao.obterConexao()) {
-                            mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/image/icons8_Cancel_32px_1.png", 183, 28, 28);
-                            mensagem.setVisible(true);
-                        } else {
-                            int Id_cliente = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-                            preparedStatement = conexao.con.prepareStatement("DELETE FROM cliente WHERE id_cliente = ?");
-                            preparedStatement.setInt(1, Id_cliente);
-                            preparedStatement.executeUpdate();
-
-                            modelo.removeRow(jTable1.getSelectedRow());
-
-                            conexao.close();
-                            preparedStatement.close();
-
-                            mensagem.setMensagem("MENSAGEM", "Cliente excluído com Sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
-                            mensagem.setVisible(true);
-                        }
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
-                    e.printStackTrace();
-                }
-                break;
-            case 0:
-                mensagem.setMensagem("ATENÇÃO", "Selecione um cliente para excluir!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
-                mensagem.setVisible(true);
-                break;
-            default:
-                mensagem.setMensagem("ATENÇÃO", "Selecione apenas um cliente para excluir!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
-                mensagem.setVisible(true);
-                break;
-        }
-    }
+//    private void ExcluirCliente() {
+//        switch (jTable1.getSelectedRows().length) {
+//            case 1:
+//                try {
+//                    Confirmação.setMensagem("ATENÇÃO", "<html><p style=\"text-align:center;\">Deseja realmente excluir<br/> esse cliente?</p></html>", "/image/icons8_Warning_Shield_32px_3.png");
+//                    Confirmação.setVisible(true);
+//
+//                    if (ViewConfirmação.Ação.equals("SIM")) {
+//
+//                        if (!conexao.obterConexao()) {
+//                            mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/image/icons8_Cancel_32px_1.png", 183, 28, 28);
+//                            mensagem.setVisible(true);
+//                        } else {
+//                            int Id_cliente = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+//                            preparedStatement = conexao.con.prepareStatement("DELETE FROM cliente WHERE id_cliente = ?");
+//                            preparedStatement.setInt(1, Id_cliente);
+//                            preparedStatement.executeUpdate();
+//
+//                            modelo.removeRow(jTable1.getSelectedRow());
+//
+//                            conexao.close();
+//                            preparedStatement.close();
+//
+//                            mensagem.setMensagem("MENSAGEM", "Cliente excluído com Sucesso!", "/image/icons8_Ok_32px.png", 1, 87, 155);
+//                            mensagem.setVisible(true);
+//                        }
+//                    }
+//                } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
+//                    e.printStackTrace();
+//                }
+//                break;
+//            case 0:
+//                mensagem.setMensagem("ATENÇÃO", "Selecione um cliente para excluir!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+//                mensagem.setVisible(true);
+//                break;
+//            default:
+//                mensagem.setMensagem("ATENÇÃO", "Selecione apenas um cliente para excluir!", "/image/icons8_Warning_Shield_32px_3.png", 255, 171, 0);
+//                mensagem.setVisible(true);
+//                break;
+//        }
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -318,21 +318,19 @@ public class PrincipalCompras extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jtfNome = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jLabelCidade = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jtfEnd = new javax.swing.JTextField();
-        jDateNasc = new com.toedter.calendar.JDateChooser();
-        jLabel10 = new javax.swing.JLabel();
-        jtfTelefone = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jtfCpa = new javax.swing.JTextField();
-        jtfCpf = new javax.swing.JTextField();
+        jtfCompra = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Novo_cadastro2 = new javax.swing.JLabel();
-        jDateCad = new com.toedter.calendar.JDateChooser();
+        jcbNomeCliente = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        jtfCodProduto = new javax.swing.JTextField();
+        jcbNomeProduto = new javax.swing.JComboBox<>();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jtfQtd = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
@@ -494,7 +492,7 @@ public class PrincipalCompras extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel16.setText("Cliente");
+        jLabel16.setText("Cód. Cliente");
         jLabel16.setToolTipText("");
 
         jtfNome.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -505,18 +503,8 @@ public class PrincipalCompras extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel17.setText("CPF");
+        jLabel17.setText("Nome Cliente");
         jLabel17.setToolTipText("");
-
-        jLabel19.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel19.setText("Data de Nascimento");
-        jLabel19.setToolTipText("");
-
-        jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel20.setText("Data de Cadastro");
-        jLabel20.setToolTipText("");
 
         jLabelCidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelCidade.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -525,37 +513,10 @@ public class PrincipalCompras extends javax.swing.JFrame {
             }
         });
 
-        jLabel21.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel21.setText("Endereço");
-        jLabel21.setToolTipText("");
-
-        jtfEnd.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtfEndKeyTyped(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel10.setText("Telefone");
-        jLabel10.setToolTipText("");
-
         jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 77, 64));
-        jLabel11.setText("CPA");
+        jLabel11.setText("Número da Compra");
         jLabel11.setToolTipText("");
-
-        jtfCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfCpfActionPerformed(evt);
-            }
-        });
-        jtfCpf.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtfCpfKeyTyped(evt);
-            }
-        });
 
         jTable1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -592,54 +553,68 @@ public class PrincipalCompras extends javax.swing.JFrame {
         Novo_cadastro2.setForeground(new java.awt.Color(0, 77, 64));
         Novo_cadastro2.setText("REALIZAR UMA COMPRA");
 
+        jcbNomeCliente.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jcbNomeCliente.setForeground(new java.awt.Color(0, 77, 64));
+        jcbNomeCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
+
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 77, 64));
+        jLabel18.setText("Cód. Produto");
+        jLabel18.setToolTipText("");
+
+        jtfCodProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfCodProdutoKeyTyped(evt);
+            }
+        });
+
+        jcbNomeProduto.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jcbNomeProduto.setForeground(new java.awt.Color(0, 77, 64));
+        jcbNomeProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar" }));
+
+        jLabel19.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 77, 64));
+        jLabel19.setText("Nome do Produto");
+        jLabel19.setToolTipText("");
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 77, 64));
+        jLabel12.setText("Quantidade");
+        jLabel12.setToolTipText("");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(274, 274, 274)
-                .addComponent(Novo_cadastro2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(291, 291, 291))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
-                            .addComponent(jtfNome))
-                        .addGap(118, 118, 118)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtfCpf))
+                            .addComponent(jtfCodProduto)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(jtfNome)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfCpa)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(jDateNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelCidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcbNomeCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbNomeProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                            .addComponent(jDateCad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jtfEnd)
-                                .addGap(10, 10, 10))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(111, 111, 111))
-                            .addComponent(jtfTelefone))))
+                            .addComponent(jtfCompra)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(263, 263, 263)
+                .addComponent(Novo_cadastro2)
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -647,44 +622,40 @@ public class PrincipalCompras extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Novo_cadastro2)
                 .addGap(26, 26, 26)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel16)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel11)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtfCpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jcbNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabelCidade)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel19)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jDateNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel20)
-                                .addComponent(jLabel21))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jDateCad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelCidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(13, 13, 13)
+                                .addComponent(jtfCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jcbNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtfCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtfQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         btnSalvar.setBackground(new java.awt.Color(0, 77, 64));
@@ -796,38 +767,24 @@ public class PrincipalCompras extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabelCidadeMouseClicked
 
-    private void jtfEndKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfEndKeyTyped
-        char keyChar = evt.getKeyChar();
-        if (Character.isLowerCase(keyChar)) {
-            evt.setKeyChar(Character.toUpperCase(keyChar));
-        }
-    }//GEN-LAST:event_jtfEndKeyTyped
-
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        Salvar();
+//        Salvar();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jtfCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCpfKeyTyped
-        String caracteres = "0987654321";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jtfCpfKeyTyped
-
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if (evt.getClickCount() == 2) {
-            try {
-                SelecionarCliente();
-            } catch (SQLException ex) {
-                Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+//        if (evt.getClickCount() == 2) {
+//            try {
+//                SelecionarCliente();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (ParseException ex) {
+//                Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
@@ -840,22 +797,22 @@ public class PrincipalCompras extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        try {
-            SelecionarCliente();
-        } catch (SQLException ex) {
-            Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            SelecionarCliente();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(PrincipalCompras.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        ExcluirCliente();
+//        ExcluirCliente();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void jtfCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCpfActionPerformed
+    private void jtfCodProdutoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodProdutoKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfCpfActionPerformed
+    }//GEN-LAST:event_jtfCodProdutoKeyTyped
 
     class hora implements ActionListener {
 
@@ -902,17 +859,14 @@ public class PrincipalCompras extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel fechar;
-    private com.toedter.calendar.JDateChooser jDateCad;
-    private com.toedter.calendar.JDateChooser jDateNasc;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -925,13 +879,14 @@ public class PrincipalCompras extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<String> jcbNomeCliente;
+    private javax.swing.JComboBox<String> jcbNomeProduto;
     private javax.swing.JLabel jlDiaDataSemana;
     private javax.swing.JLabel jlHora;
-    private javax.swing.JTextField jtfCpa;
-    private javax.swing.JTextField jtfCpf;
-    private javax.swing.JTextField jtfEnd;
+    private javax.swing.JTextField jtfCodProduto;
+    private javax.swing.JTextField jtfCompra;
     private javax.swing.JTextField jtfNome;
-    private javax.swing.JTextField jtfTelefone;
+    private javax.swing.JTextField jtfQtd;
     private javax.swing.JLabel minimizar;
     // End of variables declaration//GEN-END:variables
 }
