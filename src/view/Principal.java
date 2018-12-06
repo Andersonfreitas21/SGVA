@@ -21,10 +21,9 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-
+        diaDataSemana();
         Timer timer = new Timer(1000, new hora());
         timer.start();
-        //fundo.setIcon(new ImageIcon(getClass().getResource("/image/Ativo 4.png")));
     }
     
     private static final Principal view = new Principal();

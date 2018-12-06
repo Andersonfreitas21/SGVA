@@ -1,14 +1,23 @@
 package view;
 
 import conexao.Conexao;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import mensagens.ViewInfo;
 import util.Utilitarios;
 
@@ -20,15 +29,118 @@ public class PrincipalProduto extends javax.swing.JFrame {
 
     private final Conexao conexao = new Conexao();
     private PreparedStatement preparedStatement = null;
+    private ResultSet rs = null;
     private final Utilitarios utils = new Utilitarios();
     private final ViewInfo mensagem = new ViewInfo(null, true);
     private static final PrincipalProduto view = new PrincipalProduto();
-
+    DefaultTableModel modelo;
+    String nomeSemana, data, hora, funcao;
+    
     public PrincipalProduto() {
         initComponents();
-
+        preencheTabela();
+        diaDataSemana();
         Timer timer = new Timer(1000, new hora());
         timer.start();
+    }
+    
+    private void diaDataSemana() {
+        Date d = new Date();
+
+        Calendar c = new GregorianCalendar();
+        c.setTime(d);
+
+        int dia = c.get(Calendar.DAY_OF_WEEK);
+
+        switch (dia) {
+            case Calendar.SUNDAY:
+                nomeSemana = "domingo";
+                break;
+            case Calendar.SATURDAY:
+                nomeSemana = "sábado";
+                break;
+            case Calendar.MONDAY:
+                nomeSemana = "segunda-feira";
+                break;
+            case Calendar.TUESDAY:
+                nomeSemana = "terça-feira";
+                break;
+            case Calendar.WEDNESDAY:
+                nomeSemana = "quarta-feira";
+                break;
+            case Calendar.THURSDAY:
+                nomeSemana = "quinta-feira";
+                break;
+            case Calendar.FRIDAY:
+                nomeSemana = "sexta-feira";
+                break;
+        }
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        data = dateFormat.format(d);
+
+        jlDiaDataSemana.setText(nomeSemana + " " + data);
+    }
+    
+    private void preencheTabela() {
+        try {
+            if (!conexao.obterConexao()) {
+                mensagem.setMensagem("ATENÇÃO", "Falha ao conectar com o Banco de Dados!", "/Icones/icons8_Cancel_32px_1.png", 183, 28, 28);
+                mensagem.setVisible(true);
+            } else {
+                modelo = (DefaultTableModel) jTable1.getModel();
+                modelo.setNumRows(0);
+                jTable1.setRowHeight(20);
+
+                preparedStatement = conexao.con.prepareStatement("SELECT "
+                        + "id_cliente, "
+                        + "cliente_nome, "
+                        + "cliente_cpf, "
+                        + "cliente_cpa, "
+                        + "cliente_telefone "
+                        + "FROM cliente");
+                rs = preparedStatement.executeQuery();
+
+                while (rs.next()) {
+                    modelo.addRow(new Object[]{
+                        rs.getString("id_cliente"),
+                        rs.getString("cliente_nome"),
+                        rs.getString("cliente_cpf"),
+                        rs.getString("cliente_cpa"),
+                        rs.getString("cliente_telefone")
+                    });
+                }
+
+                jTable1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+                    @Override
+                    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+
+                        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+
+                        if (isSelected == true) {
+                            setBackground(new Color(51, 153, 255));
+                            setForeground(Color.WHITE);
+                        } else if (row % 2 == 0) {
+                            setBackground(new Color(248, 248, 248));
+                            setForeground(Color.BLACK);
+                        } else {
+                            setBackground(table.getBackground());
+                            setForeground(table.getForeground());
+                        }
+
+                        return this;
+                    }
+                });
+
+                jTable1.repaint();
+
+                conexao.close();
+                preparedStatement.close();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "OCORREU O SEGUINTE ERRO:\n" + e, "ERRO", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
     }
 
     public void limparCampos() {
@@ -53,7 +165,7 @@ public class PrincipalProduto extends javax.swing.JFrame {
 
             try {
 
-                preparedStatement = conexao.con.prepareStatement("INSERT INTO 'produto' "
+                preparedStatement = conexao.con.prepareStatement("INSERT INTO produto "
                         + "(nome_prod, valor_prod, descricao, estoque, categoria, data_cadas_prod) VALUES (?, ?, ?, ?, ?, ?)");
                 preparedStatement.setString(1, jtfNomeProduto.getText());
                 preparedStatement.setDouble(2, Double.parseDouble(jtfValorProduto.getText()));
@@ -64,8 +176,8 @@ public class PrincipalProduto extends javax.swing.JFrame {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String dataCad = simpleDateFormat.format(jDateCad.getDate());
 
-                preparedStatement.setDate(6, utils.FormatarData(dataCad));//Data Nascimento
-
+                preparedStatement.setDate(6, utils.FormatarData(dataCad));
+                
                 int resposta = preparedStatement.executeUpdate();
 
                 if (resposta > 0) {
@@ -491,13 +603,15 @@ public class PrincipalProduto extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(583, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
